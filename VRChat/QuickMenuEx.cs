@@ -37,6 +37,20 @@ namespace ReMod.Core.VRChat
             }
         }
 
+        private static Transform _menuTabs;
+
+        public static Transform MenuTabs
+        {
+            get
+            {
+                if (_menuTabs == null)
+                {
+                    _menuTabs = Instance.field_Public_Transform_0.Find("Window/Page_Buttons_QM/HorizontalLayoutGroup");
+                }
+                return _menuTabs;
+            }
+        }
+
         private static MenuStateController _menuStateCtrl;
 
         public static MenuStateController MenuStateCtrl
@@ -70,8 +84,6 @@ namespace ReMod.Core.VRChat
         private static Wing[] _wings;
         private static Wing _leftWing;
         private static Wing _rightWing;
-
-        private static Transform _cameraMenu;
 
         public static Wing[] Wings
         {
@@ -107,18 +119,6 @@ namespace ReMod.Core.VRChat
                     _rightWing = Wings.FirstOrDefault(w => w._wingType == WingType.Right);
                 }
                 return _rightWing;
-            }
-        }
-
-        public static Transform CameraMenu
-        {
-            get
-            {
-                if (_cameraMenu == null)
-                {
-                    _cameraMenu = Instance.field_Public_Transform_0.Find("Window/QMParent/Menu_Camera");
-                }
-                return _cameraMenu;
             }
         }
 
