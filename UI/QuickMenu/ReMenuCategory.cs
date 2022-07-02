@@ -1,4 +1,7 @@
 ﻿using System;
+
+using ErrorClient;
+
 using ReMod.Core.VRChat;
 using TMPro;
 using UnityEngine;
@@ -192,6 +195,11 @@ namespace ReMod.Core.UI.QuickMenu
         }
 
         public ReMenuToggle AddToggle(string text, string tooltip, ConfigValue<bool> configValue)
+        {
+            var toggle = new ReMenuToggle(text, tooltip, configValue.SetValue, _buttonContainer.RectTransform, configValue);
+            return toggle;
+        }
+        public ReMenuToggle AddToggle(string text, string tooltip, ModSettings.Option<bool> configValue)
         {
             var toggle = new ReMenuToggle(text, tooltip, configValue.SetValue, _buttonContainer.RectTransform, configValue);
             return toggle;
