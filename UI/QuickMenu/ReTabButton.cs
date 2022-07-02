@@ -21,15 +21,11 @@ namespace ReMod.Core.UI.QuickMenu
             }
         }
 
-        protected ReTabButton(string name, string tooltip, string pageName, Sprite sprite) : base(TabButtonPrefab, TabButtonPrefab.transform.parent, $"Page_{name}")
+        protected ReTabButton(string name, string tooltip, Action action, Sprite sprite) : base(TabButtonPrefab, TabButtonPrefab.transform.parent, $"Page_{name}")
         {
-            var menuTab = RectTransform.GetComponent<MenuTab>();
-            menuTab.field_Public_String_0 = GetCleanName($"QuickMenuReMod{pageName}");
-            menuTab.field_Private_MenuStateController_0 = QuickMenuEx.MenuStateCtrl;
-
             var button = GameObject.GetComponent<Button>();
             button.onClick = new Button.ButtonClickedEvent();
-            button.onClick.AddListener(new Action(menuTab.ShowTabContent));
+            button.onClick.AddListener(action);
 
             var uiTooltip = GameObject.GetComponent<VRC.UI.Elements.Tooltips.UiTooltip>();
             uiTooltip.field_Public_String_0 = tooltip;
@@ -47,7 +43,17 @@ namespace ReMod.Core.UI.QuickMenu
 
         public static ReTabButton Create(string name, string tooltip, string pageName, Sprite sprite)
         {
-            return new ReTabButton(name, tooltip, pageName, sprite);
+            ReTabButton tab = new ReTabButton(name, tooltip, () => { }, sprite);
+
+            var menuTab = tab.RectTransform.GetComponent<MenuTab>();
+            menuTab.field_Public_String_0 = GetCleanName($"QuickMenuReMod{pageName}");
+            menuTab.field_Private_MenuStateController_0 = QuickMenuEx.MenuStateCtrl;
+            tab.AddAction(new Action(menuTab.ShowTabContent));
+            return tab;
+        }
+        public static ReTabButton Create(string name, string tooltip, Action action, Sprite sprite)
+        {
+            return new ReTabButton(name, tooltip, action, sprite);
         }
     }
 }
