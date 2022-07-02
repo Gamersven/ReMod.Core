@@ -175,12 +175,12 @@ namespace ReMod.Core.UI.QuickMenu
             _buttonContainer = container;
         }
 
-        public ReMenuButton AddButton(string text, string tooltip, Action onClick, Sprite sprite = null)
+        public ReMenuButton AddButton(string text, string tooltip, Action onClick, Sprite sprite = null, bool full = false)
         {
-            var button = new ReMenuButton(text, tooltip, onClick, _buttonContainer.RectTransform, sprite);
+            var button = new ReMenuButton(text, tooltip, onClick, _buttonContainer.RectTransform, sprite, full);
             return button;
         }
-        
+
         public ReMenuButton AddSpacer(Sprite sprite = null) {
             var spacer = AddButton(string.Empty, string.Empty, null, sprite);
             spacer.GameObject.name = "Button_Spacer";

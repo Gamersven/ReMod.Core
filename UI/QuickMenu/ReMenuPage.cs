@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Linq;
+
+using ErrorClient;
+
 using ReMod.Core.Unity;
 using ReMod.Core.VRChat;
 using TMPro;
@@ -147,9 +150,9 @@ namespace ReMod.Core.UI.QuickMenu
             OnOpen?.Invoke();
         }
 
-        public ReMenuButton AddButton(string text, string tooltip, Action onClick, Sprite sprite = null)
+        public ReMenuButton AddButton(string text, string tooltip, Action onClick, Sprite sprite = null, bool full = false)
         {
-            return new ReMenuButton(text, tooltip, onClick, _container, sprite);
+            return new ReMenuButton(text, tooltip, onClick, _container, sprite, full);
         }
 
         public ReMenuButton AddSpacer(Sprite sprite = null)
@@ -166,6 +169,10 @@ namespace ReMod.Core.UI.QuickMenu
         }
 
         public ReMenuToggle AddToggle(string text, string tooltip, ConfigValue<bool> configValue)
+        {
+            return new ReMenuToggle(text, tooltip, configValue.SetValue, _container, configValue);
+        }
+        public ReMenuToggle AddToggle(string text, string tooltip, ModSettings.Option<bool> configValue)
         {
             return new ReMenuToggle(text, tooltip, configValue.SetValue, _container, configValue);
         }

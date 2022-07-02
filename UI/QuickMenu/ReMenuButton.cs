@@ -48,7 +48,7 @@ namespace ReMod.Core.UI.QuickMenu
 
         public Image Background { get; }
 
-        public ReMenuButton(string text, string tooltip, Action onClick, Transform parent, Sprite sprite = null, bool resizeTextNoSprite = true) : base(ButtonPrefab, parent,
+        public ReMenuButton(string text, string tooltip, Action onClick, Transform parent, Sprite sprite = null, bool full = false) : base(ButtonPrefab, parent,
             $"Button_{text}")
         {
             _text = GameObject.GetComponentInChildren<TextMeshProUGUI>();
@@ -59,7 +59,7 @@ namespace ReMod.Core.UI.QuickMenu
 
             if (sprite == null)
             {
-                if (resizeTextNoSprite)
+                if (full)
                 {
                     _text.fontSize = 35;
                     _text.enableAutoSizing = true;
@@ -87,9 +87,17 @@ namespace ReMod.Core.UI.QuickMenu
             }
             else
             {
-                var iconImage = RectTransform.Find("Icon").GetComponent<Image>();
-                iconImage.sprite = sprite;
-                iconImage.overrideSprite = sprite;
+                if (full)
+                {
+                    Background.sprite = sprite;
+                    Background.overrideSprite = sprite;
+                }
+                else
+                {
+                    var iconImage = RectTransform.Find("Icon").GetComponent<Image>();
+                    iconImage.sprite = sprite;
+                    iconImage.overrideSprite = sprite;
+                }
             }
 
             _styleElement = GameObject.GetComponent<StyleElement>();
