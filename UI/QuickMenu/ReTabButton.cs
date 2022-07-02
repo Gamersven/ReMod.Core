@@ -39,6 +39,11 @@ namespace ReMod.Core.UI.QuickMenu
             iconImage.sprite = sprite;
             iconImage.overrideSprite = sprite;
         }
+        public void AddAction(Action action)
+        {
+            var button = GameObject.GetComponent<Button>();
+            button.onClick.AddListener(action);
+        }
 
         public static ReTabButton Create(string name, string tooltip, string pageName, Sprite sprite)
         {
