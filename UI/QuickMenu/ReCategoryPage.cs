@@ -145,14 +145,14 @@ namespace ReMod.Core.UI.QuickMenu
             return new ReMenuCategory(header, buttonContainer);
         }
         
-        public ReMenuSliderCategory AddSliderCategory(string title)
+        public ReMenuSliderCategory AddSliderCategory(string title, int coloumns)
         {
-            return AddSliderCategory(title, true);
+            return AddSliderCategory(title, coloumns, true);
         }
 
-        public ReMenuSliderCategory AddSliderCategory(string title, bool collapsible = true)
+        public ReMenuSliderCategory AddSliderCategory(string title, int coloumns, bool collapsible = true)
         {
-            return GetSliderCategory(title) ?? new ReMenuSliderCategory(title, _container, collapsible);
+            return GetSliderCategory(title) ?? new ReMenuSliderCategory(title, coloumns, _container, collapsible);
         }
 
         public ReMenuSliderCategory GetSliderCategory(string name)

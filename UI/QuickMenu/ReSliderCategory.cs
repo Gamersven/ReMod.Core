@@ -26,7 +26,7 @@ namespace ReMod.Core.UI.QuickMenu
             }
         }
 
-        public ReMenuSliderContainer(string name, Transform parent = null) : base(ContainerPrefab, parent == null ? ContainerPrefab.transform.parent : parent, $"Sliders_{name}")
+        public ReMenuSliderContainer(string name, int coloumns, Transform parent = null) : base(ContainerPrefab, parent == null ? ContainerPrefab.transform.parent : parent, $"Sliders_{name}")
         {
             foreach (var obj in RectTransform)
             {
@@ -38,8 +38,17 @@ namespace ReMod.Core.UI.QuickMenu
                 Object.Destroy(control.gameObject);
             }
 
-            var vlg = GameObject.GetComponent<VerticalLayoutGroup>();
-            vlg.m_Padding = new RectOffset(64, 64, 0, 0);
+            //var vlg = GameObject.GetComponent<VerticalLayoutGroup>();
+            //vlg.m_Padding = new RectOffset(64, 64, 0, 0);
+
+            Component.DestroyImmediate(GameObject.GetComponent<VerticalLayoutGroup>());
+            GridLayoutGroup glg = GameObject.AddComponent<GridLayoutGroup>();
+            glg.cellSize = new Vector2(900 / coloumns, 50);
+            glg.constraintCount = coloumns;
+            glg.spacing = new Vector2(0, 32);
+            glg.padding.top = 32;
+
+
         }
 
         public ReMenuSliderContainer(Transform transform) : base(transform)
@@ -68,7 +77,7 @@ namespace ReMod.Core.UI.QuickMenu
             }
         }
 
-        public ReMenuSliderCategory(string title, Transform parent = null, bool collapsible = true)
+        public ReMenuSliderCategory(string title, int coloumns, Transform parent = null, bool collapsible = true)
         {
             if (collapsible)
             {
@@ -82,7 +91,7 @@ namespace ReMod.Core.UI.QuickMenu
                 var header = new ReMenuHeader(title, parent);
                 Header = header;
             }
-            _sliderContainer = new ReMenuSliderContainer(title, parent);
+            _sliderContainer = new ReMenuSliderContainer(title, coloumns, parent);
 
         }
 
