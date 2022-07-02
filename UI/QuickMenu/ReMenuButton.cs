@@ -91,6 +91,7 @@ namespace ReMod.Core.UI.QuickMenu
                 {
                     Background.sprite = sprite;
                     Background.overrideSprite = sprite;
+                    Object.DestroyImmediate(RectTransform.Find("Icon").gameObject);
                 }
                 else
                 {
