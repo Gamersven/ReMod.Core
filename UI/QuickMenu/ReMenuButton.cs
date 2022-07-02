@@ -139,9 +139,9 @@ namespace ReMod.Core.UI.QuickMenu
             Background = RectTransform.Find("Background").GetComponent<Image>();
         }
 
-        public static ReMenuButton Create(string text, string tooltip, Action onClick, Transform parent, Sprite sprite = null)
+        public static ReMenuButton Create(string text, string tooltip, Action onClick, Transform parent, Sprite sprite = null, bool full = false)
         {
-            return new ReMenuButton(text, tooltip, onClick, parent, sprite);
+            return new ReMenuButton(text, tooltip, onClick, parent, sprite, full);
         }
     }
 }

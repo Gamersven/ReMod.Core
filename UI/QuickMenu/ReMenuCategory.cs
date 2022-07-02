@@ -188,20 +188,20 @@ namespace ReMod.Core.UI.QuickMenu
             return spacer;
         }
 
-        public ReMenuToggle AddToggle(string text, string tooltip, Action<bool> onToggle, bool defaultValue = false)
+        public ReMenuToggle AddToggle(string text, string tooltip, Action<bool> onToggle, bool defaultValue = false, Sprite icon = null)
         {
-            var toggle = new ReMenuToggle(text, tooltip, onToggle, _buttonContainer.RectTransform, defaultValue);
+            var toggle = new ReMenuToggle(text, tooltip, onToggle, _buttonContainer.RectTransform, defaultValue, icon);
             return toggle;
         }
 
-        public ReMenuToggle AddToggle(string text, string tooltip, ConfigValue<bool> configValue)
+        public ReMenuToggle AddToggle(string text, string tooltip, ConfigValue<bool> configValue, Sprite icon = null)
         {
-            var toggle = new ReMenuToggle(text, tooltip, configValue.SetValue, _buttonContainer.RectTransform, configValue);
+            var toggle = new ReMenuToggle(text, tooltip, configValue.SetValue, _buttonContainer.RectTransform, configValue, icon);
             return toggle;
         }
-        public ReMenuToggle AddToggle(string text, string tooltip, ModSettings.Option<bool> configValue)
+        public ReMenuToggle AddToggle(string text, string tooltip, ModSettings.Option<bool> configValue, Sprite icon = null)
         {
-            var toggle = new ReMenuToggle(text, tooltip, configValue.SetValue, _buttonContainer.RectTransform, configValue);
+            var toggle = new ReMenuToggle(text, tooltip, configValue.SetValue, _buttonContainer.RectTransform, configValue, icon);
             return toggle;
         }
 
