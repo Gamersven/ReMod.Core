@@ -44,7 +44,7 @@ namespace ReMod.Core.UI.QuickMenu
             _sliderComponent = GameObject.GetComponentInChildren<Slider>();
             _sliderComponent.onValueChanged = new Slider.SliderEvent();
             _sliderComponent.onValueChanged.AddListener(new Action<float>((value) => onSlide(percentagebased ? value / 100 : value)));
-            _sliderComponent.onValueChanged.AddListener(new Action<float>(val => textValue.SetText(val.ToString("F"))));
+            _sliderComponent.onValueChanged.AddListener(new Action<float>(val => textValue.SetText(val.ToString(wholenumbers ? "" : "F"))));
             _sliderComponent.m_OnValueChanged = _sliderComponent.onValueChanged;
 
             _sliderComponent.minValue = minValue;
@@ -55,7 +55,7 @@ namespace ReMod.Core.UI.QuickMenu
             _tooltip = GameObject.GetComponent<VRC.UI.Elements.Tooltips.UiTooltip>();
             _tooltip.field_Public_String_0 = tooltip;
             _tooltip.field_Public_String_1 = tooltip;
-            
+
             Slide(defaultValue,false);
 
             EnableDisableErrorListener.RegisterSafe();
