@@ -205,7 +205,7 @@ namespace ReMod.Core.UI.QuickMenu
             return toggle;
         }
 
-        public ReMenuPage AddMenuPage(string text, string tooltip = "", Sprite sprite = null)
+        public ReMenuPage AddMenuPage(string text, string tooltip = "", Sprite sprite = null, bool full = false)
         {
             var existingPage = GetMenuPage(text);
             if (existingPage != null)
@@ -214,11 +214,11 @@ namespace ReMod.Core.UI.QuickMenu
             }
 
             var menu = new ReMenuPage(text);
-            AddButton(text, string.IsNullOrEmpty(tooltip) ? $"Open the {text} menu" : tooltip, menu.Open, sprite);
+            AddButton(text, string.IsNullOrEmpty(tooltip) ? $"Open the {text} menu" : tooltip, menu.Open, sprite, full);
             return menu;
         }
 
-        public ReCategoryPage AddCategoryPage(string text, string tooltip = "", Sprite sprite = null)
+        public ReCategoryPage AddCategoryPage(string text, string tooltip = "", Sprite sprite = null, bool full = false)
         {
             var existingPage = GetCategoryPage(text);
             if (existingPage != null)
@@ -227,7 +227,7 @@ namespace ReMod.Core.UI.QuickMenu
             }
 
             var menu = new ReCategoryPage(text);
-            AddButton(text, string.IsNullOrEmpty(tooltip) ? $"Open the {text} menu" : tooltip, menu.Open, sprite);
+            AddButton(text, string.IsNullOrEmpty(tooltip) ? $"Open the {text} menu" : tooltip, menu.Open, sprite, full);
             return menu;
         }
 
