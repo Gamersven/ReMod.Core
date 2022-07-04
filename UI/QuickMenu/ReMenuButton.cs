@@ -56,7 +56,9 @@ namespace ReMod.Core.UI.QuickMenu
             _text.richText = true;
 
             Background = RectTransform.Find("Background").GetComponent<Image>();
+            _styleElement = GameObject.GetComponent<StyleElement>();
 
+            var icon = RectTransform.Find("Icon").gameObject;
             if (sprite == null)
             {
                 if (full)
@@ -74,15 +76,20 @@ namespace ReMod.Core.UI.QuickMenu
                     var horizontalLayout = GameObject.AddComponent<HorizontalLayoutGroup>();
                     horizontalLayout.padding.right = 10;
                     horizontalLayout.padding.left = 10;
+
                     var styleElement = _text.GetComponent<StyleElement>();
                     styleElement.field_Public_String_1 = "H1";
-                    Object.DestroyImmediate(RectTransform.Find("Icon").gameObject);
+                    icon.SetActive(false);
                 }
                 else
                 {
-                    var iconImage = RectTransform.Find("Icon").GetComponent<Image>();
-                    iconImage.sprite = null;
-                    iconImage.overrideSprite = null;
+                    icon.SetActive(false);
+                    //var iconImage = RectTransform.Find("Icon").GetComponent<Image>();
+                    //iconImage.sprite = null;
+                    //iconImage.overrideSprite = null;
+                    //iconImage.enabled = false;
+                    //_styleElement.field_Public_String_0 = "None";
+
                 }
             }
             else
@@ -91,17 +98,17 @@ namespace ReMod.Core.UI.QuickMenu
                 {
                     Background.sprite = sprite;
                     Background.overrideSprite = sprite;
-                    Object.DestroyImmediate(RectTransform.Find("Icon").gameObject);
+                    icon.SetActive(false);
                 }
                 else
                 {
-                    var iconImage = RectTransform.Find("Icon").GetComponent<Image>();
+                    var iconImage = icon.GetComponent<Image>();
                     iconImage.sprite = sprite;
                     iconImage.overrideSprite = sprite;
                 }
             }
 
-            _styleElement = GameObject.GetComponent<StyleElement>();
+
 
             Object.DestroyImmediate(RectTransform.Find("Icon_Secondary").gameObject);
             Object.DestroyImmediate(RectTransform.Find("Badge_Close").gameObject);
