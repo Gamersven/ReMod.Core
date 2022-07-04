@@ -46,8 +46,8 @@ namespace ReMod.Core.UI.QuickMenu
             
             Slide(defaultValue,false);
 
-            EnableDisableListener.RegisterSafe();
-            var edl = GameObject.AddComponent<EnableDisableListener>();
+            EnableDisableErrorListener.RegisterSafe();
+            var edl = GameObject.AddComponent<EnableDisableErrorListener>();
         }
 
         public void Slide(float value, bool callback = true)

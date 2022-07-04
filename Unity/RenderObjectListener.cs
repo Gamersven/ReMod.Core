@@ -7,11 +7,11 @@ using UnityEngine;
 namespace ReMod.Core.Unity
 {
     [RegisterTypeInIl2Cpp]
-    public class RenderObjectListener : MonoBehaviour
+    public class RenderObjectErrorListener : MonoBehaviour
     {
         [method: HideFromIl2Cpp]
         public event Action RenderObject;
-        public RenderObjectListener(IntPtr obj0) : base(obj0) { }
+        public RenderObjectErrorListener(IntPtr obj0) : base(obj0) { }
 
         public void OnRenderObject()
         {
@@ -25,7 +25,7 @@ namespace ReMod.Core.Unity
             if (_registered) return;
             try
             {
-                ClassInjector.RegisterTypeInIl2Cpp<RenderObjectListener>();
+                ClassInjector.RegisterTypeInIl2Cpp<RenderObjectErrorListener>();
                 _registered = true;
             }
             catch (Exception)

@@ -7,14 +7,14 @@ using UnityEngine;
 namespace ReMod.Core.Unity
 {
     [RegisterTypeInIl2Cpp]
-    public class EnableDisableListener : MonoBehaviour
+    public class EnableDisableErrorListener : MonoBehaviour
     {
         [method: HideFromIl2Cpp]
         public event Action OnEnableEvent;
         [method: HideFromIl2Cpp]
         public event Action OnDisableEvent;
 
-        public EnableDisableListener(IntPtr obj) : base(obj) { }
+        public EnableDisableErrorListener(IntPtr obj) : base(obj) { }
         public void OnEnable() => OnEnableEvent?.Invoke();
         public void OnDisable() => OnDisableEvent?.Invoke();
 
@@ -25,7 +25,7 @@ namespace ReMod.Core.Unity
             if (_registered) return;
             try
             {
-                ClassInjector.RegisterTypeInIl2Cpp<EnableDisableListener>();
+                ClassInjector.RegisterTypeInIl2Cpp<EnableDisableErrorListener>();
                 _registered = true;
             }
             catch (Exception)

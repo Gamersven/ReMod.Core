@@ -73,8 +73,8 @@ namespace ReMod.Core.UI.QuickMenu
             
             Toggle(defaultValue,false);
 
-            EnableDisableListener.RegisterSafe();
-            var edl = GameObject.AddComponent<EnableDisableListener>();
+            EnableDisableErrorListener.RegisterSafe();
+            var edl = GameObject.AddComponent<EnableDisableErrorListener>();
             edl.OnEnableEvent += UpdateToggleIfNeeded;
         }
 

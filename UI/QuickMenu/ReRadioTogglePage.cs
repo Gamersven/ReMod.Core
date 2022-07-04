@@ -81,8 +81,8 @@ namespace ReMod.Core.UI.QuickMenu
 
             QuickMenuEx.MenuStateCtrl.field_Private_Dictionary_2_String_UIPage_0.Add(UiPage.field_Public_String_0, UiPage);
 
-            EnableDisableListener.RegisterSafe();
-            var listener = GameObject.AddComponent<EnableDisableListener>();
+            EnableDisableErrorListener.RegisterSafe();
+            var listener = GameObject.AddComponent<EnableDisableErrorListener>();
             listener.OnEnableEvent += () => OnOpen?.Invoke();
             listener.OnDisableEvent += () => OnClose?.Invoke();
         }

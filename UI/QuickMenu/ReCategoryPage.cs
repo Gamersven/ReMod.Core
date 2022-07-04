@@ -98,8 +98,8 @@ namespace ReMod.Core.UI.QuickMenu
                 QuickMenuEx.MenuStateCtrl.field_Public_ArrayOf_UIPage_0 = rootPages.ToArray();
             }
 
-            EnableDisableListener.RegisterSafe();
-            var listener = GameObject.AddComponent<EnableDisableListener>();
+            EnableDisableErrorListener.RegisterSafe();
+            var listener = GameObject.AddComponent<EnableDisableErrorListener>();
             listener.OnEnableEvent += () => OnOpen?.Invoke();
             listener.OnDisableEvent += () => OnClose?.Invoke();
         }

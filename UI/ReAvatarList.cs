@@ -73,8 +73,8 @@ namespace ReMod.Core.UI
 
             GameObject.transform.SetSiblingIndex(0);
 
-            EnableDisableListener.RegisterSafe();
-            var enableDisableListener = GameObject.AddComponent<EnableDisableListener>();
+            EnableDisableErrorListener.RegisterSafe();
+            var enableDisableListener = GameObject.AddComponent<EnableDisableErrorListener>();
             enableDisableListener.OnEnableEvent += () =>
             {
                 OnEnable?.Invoke();
