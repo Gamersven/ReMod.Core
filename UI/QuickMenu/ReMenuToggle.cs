@@ -25,7 +25,7 @@ namespace ReMod.Core.UI.QuickMenu
             set
             {
                 _toggleComponent.interactable = value;
-                            
+
                 if(_toggleStyleElement != null)
                     _toggleStyleElement.OnEnable();
             }
@@ -37,7 +37,7 @@ namespace ReMod.Core.UI.QuickMenu
             get => _valueHolder;
             set => Toggle(value);
         }
-        
+
         private StyleElement _toggleStyleElement;
 
         private object _toggleIcon;

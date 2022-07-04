@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
+using ErrorClient;
+
 using ReMod.Core.VRChat;
 using TMPro;
 using UnityEngine;
@@ -14,7 +17,7 @@ namespace ReMod.Core.UI.QuickMenu
     {
         private static GameObject _ContainerPrefab;
         internal static GameObject ContainerPrefab
-        {                       
+        {
             get
             {
                 if (_ContainerPrefab == null)
@@ -38,15 +41,15 @@ namespace ReMod.Core.UI.QuickMenu
                 Object.Destroy(control.gameObject);
             }
 
-            //var vlg = GameObject.GetComponent<VerticalLayoutGroup>();
-            //vlg.m_Padding = new RectOffset(64, 64, 0, 0);
+            var vlg = GameObject.GetComponent<VerticalLayoutGroup>();
+            vlg.m_Padding = new RectOffset(64, 64, 0, 0);
 
-            Component.DestroyImmediate(GameObject.GetComponent<VerticalLayoutGroup>());
-            GridLayoutGroup glg = GameObject.AddComponent<GridLayoutGroup>();
-            glg.cellSize = new Vector2(900 / coloumns, 50);
-            glg.constraintCount = coloumns;
-            glg.spacing = new Vector2(0, 32);
-            glg.padding.top = 32;
+            //Component.DestroyImmediate(GameObject.GetComponent<VerticalLayoutGroup>());
+            //GridLayoutGroup glg = GameObject.AddComponent<GridLayoutGroup>();
+            //glg.cellSize = new Vector2(900 / coloumns, 50);
+            //glg.constraintCount = coloumns;
+            //glg.spacing = new Vector2(0, 32);
+            //glg.padding.top = 32;
 
 
         }
@@ -107,7 +110,12 @@ namespace ReMod.Core.UI.QuickMenu
             return slider;
         }
 
-        public ReMenuSlider AddSlider(string text, string tooltip, ConfigValue<float> configValue, float defaultValue = 0, float minValue = 0, float maxValue = 10, bool wholenumbers = true, bool percentagebased = false)
+        public ReMenuSlider AddSlider(string text, string tooltip, ConfigValue<float> configValue, float minValue = 0, float maxValue = 10, bool wholenumbers = true, bool percentagebased = false)
+        {
+            var slider = new ReMenuSlider(text, tooltip, configValue.SetValue, _sliderContainer.RectTransform, configValue, minValue, maxValue, wholenumbers, percentagebased);
+            return slider;
+        }
+        public ReMenuSlider AddSlider(string text, string tooltip, ModSettings.Option<float> configValue, float minValue = 0, float maxValue = 10, bool wholenumbers = true, bool percentagebased = false)
         {
             var slider = new ReMenuSlider(text, tooltip, configValue.SetValue, _sliderContainer.RectTransform, configValue, minValue, maxValue, wholenumbers, percentagebased);
             return slider;
