@@ -48,9 +48,9 @@ namespace ReMod.Core.UI.QuickMenu
             get => _textComponent.text;
             set => _textComponent.text = value;
         }
-        
+
         private VRC.UI.Elements.Tooltips.UiToggleTooltip _tooltip;
-        
+
         public string Tooltip {
             get => _tooltip != null ? _tooltip.field_Public_String_0 : "";
             set
@@ -66,7 +66,7 @@ namespace ReMod.Core.UI.QuickMenu
             var icon = RectTransform.Find("Icon_On").GetComponent<Image>();
             icon.sprite = iconOn ?? QuickMenuEx.OnIconSprite;
             icon = RectTransform.Find("Icon_Off").GetComponent<Image>();
-            icon.sprite = iconOff ?? QuickMenuEx.OnIconSprite;
+            icon.sprite = iconOff ?? QuickMenuEx.OffIconSprite;
 
             Object.DestroyImmediate(GameObject.GetComponent<UIInvisibleGraphic>()); // Fix for having clickable area overlap main quickmenu ui
 
@@ -76,7 +76,7 @@ namespace ReMod.Core.UI.QuickMenu
             _toggleComponent.onValueChanged = new Toggle.ToggleEvent();
             _toggleComponent.onValueChanged.AddListener(new Action<bool>(OnValueChanged));
             _toggleComponent.onValueChanged.AddListener(new Action<bool>(onToggle));
-            
+
             _toggleStyleElement = GameObject.GetComponent<StyleElement>();
 
             _textComponent = GameObject.GetComponentInChildren<TextMeshProUGUI>();
@@ -89,7 +89,7 @@ namespace ReMod.Core.UI.QuickMenu
             _tooltip = GameObject.GetComponent<VRC.UI.Elements.Tooltips.UiToggleTooltip>();
             _tooltip.field_Public_String_0 = tooltip;
             _tooltip.field_Public_String_1 = tooltip;
-            
+
             Toggle(defaultValue,false);
 
             EnableDisableErrorListener.RegisterSafe();
