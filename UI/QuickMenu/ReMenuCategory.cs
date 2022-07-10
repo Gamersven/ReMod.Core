@@ -199,11 +199,6 @@ namespace ReMod.Core.UI.QuickMenu
             var toggle = new ReMenuToggle(text, tooltip, configValue.SetValue, _buttonContainer.RectTransform, configValue);
             return toggle;
         }
-        public ReMenuToggle AddToggle(string text, string tooltip, ModSettings.Option<bool> configValue)
-        {
-            var toggle = new ReMenuToggle(text, tooltip, configValue.SetValue, _buttonContainer.RectTransform, configValue);
-            return toggle;
-        }
         public ReMenuToggle AddToggle(string text, string tooltip, Action<bool> onToggle, bool defaultValue = false, Sprite iconOn = null, Sprite iconOff = null)
         {
             var toggle = new ReMenuToggle(text, tooltip, onToggle, _buttonContainer.RectTransform, defaultValue, iconOn, iconOff);
@@ -214,9 +209,9 @@ namespace ReMod.Core.UI.QuickMenu
             var toggle = new ReMenuToggle(text, tooltip, configValue.SetValue, _buttonContainer.RectTransform, configValue, iconOn, iconOff);
             return toggle;
         }
-        public ReMenuToggle AddToggle(string text, string tooltip, ModSettings.Option<bool> configValue, Sprite iconOn = null, Sprite iconOff = null)
+        public ReMenuToggle AddToggle(string text, string tooltip, ModSettings.Option<bool> configValue, Action<bool> action = null, Sprite iconOn = null, Sprite iconOff = null)
         {
-            var toggle = new ReMenuToggle(text, tooltip, configValue.SetValue, _buttonContainer.RectTransform, configValue, iconOn, iconOff);
+            var toggle = new ReMenuToggle(text, tooltip, (Action<bool>)Action.Combine(configValue.SetValue, action), _buttonContainer.RectTransform, configValue, iconOn, iconOff);
             return toggle;
         }
 
